@@ -27,7 +27,9 @@ DEFAULTUSER = (
 CUSTOM_MIDDLE_PMP = (
     str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else f"Protection By {DEFAULTUSER} ❤️"
 )
-USER_BOT_WARN_ZERO = "ඔයා මගේ මාස්ටර් ගෙ Inbox එකට Spam ගහන්න හදපු නිසා මම ඔයාව Block කරා"
+USER_BOT_WARN_ZERO = (
+    "ඔයා මගේ මාස්ටර් ගෙ Inbox එකට Spam ගහන්න හදපු නිසා මම ඔයාව Block කරා"
+)
 
 botisnoob = Var.TG_BOT_USER_NAME_BF_HER
 
@@ -55,7 +57,9 @@ if Var.PRIVATE_GROUP_ID is not None:
                     del PREV_REPLY_MESSAGE[chats.id]
                 pmpermit_sql.approve(chats.id, "Approved Another Nibba")
                 await event.edit(
-                    "ඔයාව ප්‍රයිවට් මැසේජ් යවන්න Approove උනා [{}](tg://user?id={})".format(firstname, chats.id)
+                    "ඔයාව ප්‍රයිවට් මැසේජ් යවන්න Approove උනා [{}](tg://user?id={})".format(
+                        firstname, chats.id
+                    )
                 )
                 await asyncio.sleep(3)
                 await event.delete()
@@ -70,9 +74,7 @@ if Var.PRIVATE_GROUP_ID is not None:
         if event.is_private:
             if pmpermit_sql.is_approved(chat.id):
                 pmpermit_sql.disapprove(chat.id)
-            await event.edit(
-                    "Blocked [{}](tg://user?id={})".format(firstname, chat.id)
-                )
+            await event.edit("Blocked [{}](tg://user?id={})".format(firstname, chat.id))
             await event.client(functions.contacts.BlockRequest(chat.id))
 
     @borg.on(friday_on_cmd(pattern="(da|disapprove)"))
